@@ -41,3 +41,7 @@ test("should throw exception for negative numbers", () => {
     "negative numbers not allowed: -2,-4"
   );
 });
+
+test("should handle large numbers in the input", () => {
+  expect(calculator.add("1000,2000,3000")).toBe(6000);
+});
