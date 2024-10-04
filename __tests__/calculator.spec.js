@@ -19,3 +19,7 @@ test("should return the sum of any number of comma-separated numbers", () => {
 test("should handle new lines as delimiter", () => {
   expect(calculator.add("1\n2\n3")).toBe(6);
 });
+
+test("should handle new lines as delimiter along with commas", () => {
+  expect(calculator.add("1\n2,3")).toBe(6);
+});
