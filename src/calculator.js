@@ -7,7 +7,9 @@ function add(numbers) {
 
   if (numbers.startsWith("//")) {
     const parts = numbers.split("\n");
-    delimiter = new RegExp(parts[0][2]);
+    let customDelimiter = parts[0].slice(2);
+    customDelimiter = customDelimiter.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+    delimiter = new RegExp(customDelimiter);
     numbers = parts[1];
   }
 
