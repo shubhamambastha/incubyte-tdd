@@ -24,6 +24,10 @@ test("should handle new lines as delimiter along with commas", () => {
   expect(calculator.add("1\n2,3")).toBe(6);
 });
 
-test("should support different delimiters", () => {
+test("should support different delimiters: 1", () => {
   expect(calculator.add("//;\n1;2")).toBe(3);
+});
+
+test("should support different delimiters: 2", () => {
+  expect(calculator.add("//[\n1[2")).toBe(3);
 });
