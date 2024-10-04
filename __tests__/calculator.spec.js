@@ -35,3 +35,9 @@ test("should support different delimiters: 2", () => {
 test("should support different delimiters: 3", () => {
   expect(calculator.add("//f\n1f2")).toBe(3);
 });
+
+test("should throw exception for negative numbers", () => {
+  expect(() => stringCalculator.add("1,-2,3,-4")).toThrow(
+    "negative numbers not allowed: -2,-4"
+  );
+});
