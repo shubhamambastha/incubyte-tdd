@@ -31,3 +31,7 @@ test("should support different delimiters: 1", () => {
 test("should support different delimiters: 2", () => {
   expect(calculator.add("//[\n1[2")).toBe(3);
 });
+
+test("should support different delimiters: 3", () => {
+  expect(calculator.add("//f\n1f2")).toBe(3);
+});
