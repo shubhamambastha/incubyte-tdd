@@ -17,6 +17,10 @@ function validate(numbersArray) {
   return numbersArray;
 }
 
+function ignoreLargeNumber(numbersArray) {
+  return numbersArray.filter((num) => num < 1000);
+}
+
 function calculateSum(numbersArray) {
   return numbersArray.reduce((sum, num) => sum + num, 0);
 }
@@ -39,8 +43,10 @@ function add(inputString) {
     numberString = result.numbers;
   }
 
-  const numbersArray = validate(
-    splitNumbers(numberString, delimiter).map((num) => parseInt(num, 10))
+  const numbersArray = ignoreLargeNumber(
+    validate(
+      splitNumbers(numberString, delimiter).map((num) => parseInt(num, 10))
+    )
   );
 
   return calculateSum(numbersArray);
