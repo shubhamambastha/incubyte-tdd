@@ -9,11 +9,15 @@ function parseCustomDelimiter(numbers) {
   return { delimiter, numbers: parts[1] };
 }
 
-function validateAndSum(numbersArray) {
+function validate(numbersArray) {
   const negatives = numbersArray.filter((num) => num < 0);
   if (negatives.length > 0) {
     throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
   }
+  return numbersArray;
+}
+
+function calculateSum(numbersArray) {
   return numbersArray.reduce((sum, num) => sum + num, 0);
 }
 
@@ -21,23 +25,25 @@ function splitNumbers(numbers, delimiter) {
   return numbers.split(new RegExp(delimiter));
 }
 
-function add(numbers) {
-  if (numbers === "") {
+function add(inputString) {
+  if (inputString === "") {
     return 0;
   }
 
   let delimiter = /,|\n/;
+  let numberString = inputString;
 
-  if (numbers.startsWith("//")) {
-    const result = parseCustomDelimiter(numbers);
+  if (inputString.startsWith("//")) {
+    const result = parseCustomDelimiter(inputString);
     delimiter = result.delimiter;
-    numbers = result.numbers;
+    numberString = result.numbers;
   }
 
-  const numbersArray = splitNumbers(numbers, delimiter).map((num) =>
-    parseInt(num, 10)
+  const numbersArray = validate(
+    splitNumbers(numberString, delimiter).map((num) => parseInt(num, 10))
   );
-  return validateAndSum(numbersArray);
+
+  return calculateSum(numbersArray);
 }
 
 module.exports = { add };
